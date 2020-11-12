@@ -20,6 +20,7 @@ class AlbumMapper(AbstractMapper):
         print('Deleting removed album')
 
 
+
 @MapperRegistry.register(AlbumMapper)
 class Album(DomainObject):
     def __init__(self, title, genre):

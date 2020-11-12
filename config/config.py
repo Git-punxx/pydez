@@ -1,17 +1,10 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 
 class AbstractConfig(metaclass = ABCMeta):
     environ = {}
 
     def __init__(self):
         self.observers = []
-
-    def register(self, observer):
-        self.observers.append(observer)
-
-    def notify(self):
-        for observer in self.observers:
-            observer.update()
 
     def __setattr__(self, key, value):
         self.environ[key] = value
@@ -26,3 +19,11 @@ class AbstractConfig(metaclass = ABCMeta):
         :return: The corresponding configuration value
         '''
         return self.environ[item]
+
+    def register(self, observer):
+        self.observers.append(observer)
+
+    def notify(self):
+        for observer in self.observers:
+            observer.update()
+
